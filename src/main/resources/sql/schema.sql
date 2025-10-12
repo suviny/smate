@@ -1,0 +1,2 @@
+-- created by Subin Park on 2025-10-12
+-- SQL script for the H2 database in embedded mode.
