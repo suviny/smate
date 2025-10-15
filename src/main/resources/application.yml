@@ -1,1 +1,46 @@
+# ====================================================================================================
+#  공통 환경 설정
+# ====================================================================================================
 
+server:
+  servlet:
+    # HTTP 요청 및 응답의 인코딩 설정
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+spring:
+  config:
+    # 외부 설정 파일 불러오기
+    import: optional:file:.env[.properties]
+  profiles:
+    # 활성화될 프로필
+    active: dev
+  application:
+    name: smate-app
+  main:
+    # 스프링부트 애플리케이션 구동시 출력되는 배너 비활성화
+    banner-mode: off
+  # 화면단 변경 이력 반영을 위한 템플릿 경로와 캐싱값 설정
+  thymeleaf:
+    prefix: file:src/main/resources/templates/
+    suffix: .html
+    mode: HTML
+    encoding: UTF-8
+    cache: false
+  # 화면단 변경 이력 반영을 위한 정적 리소스 위치 설정
+  web:
+    resources:
+      static-locations: file:src/main/resources/static/
+
+mybatis:
+  # 마이바티스 설정 파일 경로 지정
+  config-location: classpath:sql/mybatis/mybatis-config.xml
+  # 매퍼 XML 파일 경로 지정
+  mapper-locations:
+    - classpath:sql/mybatis/mappers/*_mapper.xml
+  # 마이바티스에서 사용될 자바 클래스의 패키지 경로 지정
+  type-aliases-package: com.viny.smate.domain.**.dto
+  # 커스터마이징한 타입 핸들러 클래스의 패키지 경로 지정
+  type-handlers-package: com.viny.smate.global.common.type
