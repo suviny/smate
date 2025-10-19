@@ -11,6 +11,8 @@ application-local.yml
 application-prod.yml
 /.logs/
 /.logs/**
+/logs/
+/logs/**
 
 ### STS ###
 .apt_generated
