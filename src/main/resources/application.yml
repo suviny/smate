@@ -36,11 +36,15 @@ spring:
 
 mybatis:
   # 마이바티스 설정 파일 경로 지정
-  config-location: classpath:sql/mybatis/mybatis-config.xml
+  config-location: classpath:mybatis/mybatis-config.xml
   # 매퍼 XML 파일 경로 지정
   mapper-locations:
-    - classpath:sql/mybatis/mappers/*_mapper.xml
+    - classpath:mybatis/mappers/*_mapper.xml
   # 마이바티스에서 사용될 자바 클래스의 패키지 경로 지정
   type-aliases-package: com.viny.smate.domain.**.dto
   # 커스터마이징한 타입 핸들러 클래스의 패키지 경로 지정
   type-handlers-package: com.viny.smate.global.common.type
+
+logging:
+  # 로그백 설정 파일의 경로 지정
+  config: classpath:logback/logback-spring.xml

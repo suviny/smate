@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 로그백 설정 파일을 30초마다 확인하여 변경된 부분이 있을 경우 자동 갱신 -->
+<configuration debug="true" scan="true" scanPeriod="30 seconds">
+    <property resource="logback/logback-variables.properties"/>
+    <!-- 로그 파일명 -->
+    <property name="LOG_FILE" value="${LOG_FILE_NAME}"/>
+    <!-- 로그 파일 디렉토리 -->
+    <property name="LOG_DIR" value="${LOG_DIR}"/>
+    <!-- 로그 파일 경로 -->
+    <property name="LOG_PATH" value="${LOG_HOME}/${LOG_DIR}"/>
+    <!-- 로그 출력 패턴 -->
+    <property name="LOG_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} [traceId=%X{traceId}] %-5level [%thread] %logger{36} - %msg%n"/>
+
+    <!-- 로그 파일 생성시 추가될 날짜 정보를 위한 타임스탬프 -->
+    <timestamp key="BY_DATE" datePattern="yyyy-MM-dd"/>
+
+    <!-- 외부 Appender 설정 가져오기 -->
+    <include resource="logback/appender/console-appender.xml"/>
+    <include resource="logback/appender/file-info-appender.xml"/>
+    <include resource="logback/appender/file-warn-appender.xml"/>
+    <include resource="logback/appender/file-error-appender.xml"/>
+
+    <springProfile name="dev">
+        <!-- 마이바티스 내부 SQL 및 바인딩 정보 로그 출력 -->
+        <logger name="org.mybatis" level="DEBUG"/>
+        <!-- 마이바티스 로깅 인터페이스 관련 로그 출력 -->
+        <logger name="org.apache.ibatis.logging" level="DEBUG"/>
+        <logger name="jdbc" level="OFF"/>
+        <!-- 실행된 SQL문 로그 출력 (Prepared Statement와 관련된 파라미터는 자동으로 변경되어 출력) -->
+        <logger name="jdbc.sqlonly" level="DEBUG"/>
+        <!-- SQL 실행 시간 -->
+        <logger name="jdbc.sqltiming" level="DEBUG"/>
+        <!-- ResultSet을 제외한 모든 JDBC 호출 정보 출력 -->
+        <logger name="jdbc.audit" level="OFF"/>
+        <!-- ResultSet을 포함한 모든 JDBC 호출 정보를 출력 -->
+        <logger name="jdbc.resultset" level="OFF"/>
+        <!-- SQL 조회 결과를 테이블 형태로 출력 -->
+        <logger name="jdbc.resultsettable" level="DEBUG"/>
+        <!-- 연결 및 연결 종료 관련 로그 출력 -->
+        <logger name="connection" level="OFF"/>
+
+        <logger name="com.viny.smate" level="DEBUG"/>
+
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="local">
+        <logger name="org.mybatis" level="INFO"/>
+        <logger name="org.apache.ibatis.logging" level="INFO"/>
+        <logger name="jdbc" level="OFF"/>
+        <logger name="jdbc.sqlonly" level="INFO"/>
+        <logger name="jdbc.sqltiming" level="INFO"/>
+        <logger name="jdbc.audit" level="OFF"/>
+        <logger name="jdbc.resultset" level="OFF"/>
+        <logger name="jdbc.resultsettable" level="OFF"/>
+        <logger name="connection" level="OFF"/>
+
+        <logger name="com.viny.smate" level="INFO" additivity="false">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="FILE-INFO"/>
+        </logger>
+
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="prod">
+        <root level="WARN">
+            <appender-ref ref="FILE-WARN"/>
+            <appender-ref ref="FILE-ERROR"/>
+        </root>
+    </springProfile>
+</configuration>
