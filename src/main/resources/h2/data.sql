@@ -1,0 +1,42 @@
+INSERT INTO TASK_GROUPS (
+    NAME, ORDER_NO, UPDATED_AT
+) VALUES (
+    '기획 및 요구사항 분석', 1, NOW()
+);
+
+INSERT INTO TASK_GROUPS (
+    NAME, ORDER_NO, UPDATED_AT
+) VALUES (
+    '설계', 2, NOW()
+);
+
+INSERT INTO TASK_GROUPS (
+    NAME, ORDER_NO, UPDATED_AT
+) VALUES (
+    '구현', 3, NOW()
+);
+
+INSERT INTO TASK_GROUPS (
+    NAME, ORDER_NO, UPDATED_AT
+) VALUES (
+    '테스트', 4, NOW()
+);
+
+INSERT INTO TASK_GROUPS (
+    NAME, ORDER_NO, UPDATED_AT
+) VALUES (
+    '유지보수', 5, NOW()
+);
+
+
+INSERT INTO BOARD_GROUPS (
+    NAME, ORDER_NO, UPDATED_AT
+) VALUES (
+    '공지사항', 2, NOW()
+)
+
+INSERT INTO BOARD_GROUPS (
+    NAME, ORDER_NO, UPDATED_AT
+) VALUES (
+    '자유 게시판', 1, NOW()
+)

@@ -1,0 +1,34 @@
+# 서버 설정 : 포트 번호는 프로파일별 관리
+server:
+  servlet:
+    # 요청 및 응답의 인코딩 UTF-8 강제 적용
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+# 스프링 공통 설정
+spring:
+  config:
+    # 환경 변수 파일(.env) 로드
+    import: optional:file:.env[.properties]
+  profiles:
+    # 활성 프로파일
+    active: dev
+  application:
+    name: smate-app
+  main:
+    # 스프링 부트 시작 배너 비활성화
+    banner-mode: OFF
+  thymeleaf:
+    # 템플릿 변경 시 브라우저 새로고침 후 반영이 되도록 템플릿 경로 변경
+    prefix: file:src/main/resources/templates/
+    suffix: .html
+    mode: HTML
+    encoding: UTF-8
+    cache: false
+  web:
+    resources:
+      # 정적 리소스 변경 시 브라우저 새로고침 후 반영이 되도록 파일 경로 변경
+      static-locations:
+        - file:src/main/resources/static/
