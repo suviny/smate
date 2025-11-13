@@ -22,7 +22,7 @@
         </encoder>
     </appender>
 
-    <!-- 레벨 별 파일로 로그 출력 설정 -->
+    <!-- 파일로 정보 로그 출력 설정 -->
     <appender name="FILE-INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level>INFO</level>
@@ -41,6 +41,7 @@
         </rollingPolicy>
     </appender>
 
+    <!-- 파일로 경고 로그 출력 설정 -->
     <appender name="FILE-WARN" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level>WARN</level>
@@ -59,6 +60,7 @@
         </rollingPolicy>
     </appender>
 
+    <!-- 파일로 에러 로그 출력 설정 -->
     <appender name="FILE-ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level>ERROR</level>
